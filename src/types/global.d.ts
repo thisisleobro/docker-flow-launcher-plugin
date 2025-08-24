@@ -1,0 +1,1 @@
+type Command = (parameters: string[], respond: (message: utils.Response) => void) => void

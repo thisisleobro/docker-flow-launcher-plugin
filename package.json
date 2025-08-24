@@ -1,0 +1,13 @@
+{
+  "name": "docker-flow-launcher-plugin",
+  "type": "module",
+  "scripts": {
+    "test": "vitest"
+  },
+  "dependencies": {
+    "docker-cli-js": "^2.10.0"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  }
+}
