@@ -28,7 +28,7 @@ export class Response {
 		} else if (result instanceof ResponseItem) {
 			this.result = [result]
 		} else if (typeof result === 'string') {
-			this.result = new ResponseItem(result)
+			this.result = [new ResponseItem(result)]
 		} else {
 			this.result = []
 		}
