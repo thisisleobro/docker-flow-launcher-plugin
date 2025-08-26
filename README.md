@@ -1,6 +1,12 @@
-### Unofficial Docker Plugin for Flow Launcher
+## Unofficial Docker Plugin for Flow Launcher
 
 You can list images and containers for now.
 Suggestions are welcome.
 
+### Usage
+An empty query gives you the options to select either images or containers
+- containers get you list of containers. Running ones show the default logo image while inacive ones show a grayscale logo
+- images get you get a list of downloaded images with related information
+
+### Demo
 https://github.com/user-attachments/assets/a1040d6d-de0a-4650-b24b-69653f8bf4e1
