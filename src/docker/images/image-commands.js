@@ -1,18 +1,21 @@
+import { getNewDockerInstance } from "../../utils/docker.js";
 import { Response, ResponseItem } from "../../utils/response.js";
 import { Docker } from 'docker-cli-js';
 
 
 export function imageCommands(_parameters, respond) {
-	const docker = new Docker({echo: false})
+	const docker = getNewDockerInstance()
+
+	if (!docker) {
+		return respond(new Response('No docker instance running yet', docker || 'undefined'))
+	}
 
 	docker.command('images')
 		.then((result) => {
 			const {images} = result
 
 			if (!images || images.length === 0 ) {
-				return respond(new Response(
-					new ResponseItem('image list is empty', null, null, 'assets/docker.png')
-				))
+				return respond(new Response('image list is empty'))
 			}
 
 			return respond(new Response(images
@@ -21,8 +24,6 @@ export function imageCommands(_parameters, respond) {
 				new ResponseItem(
 					`${repository}:${tag} (${imageId})`,
 					`created ${created}. ${size}`,
-					null,
-					"assets/docker.png",
 				)
 			)))
 		})

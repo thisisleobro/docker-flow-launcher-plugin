@@ -1,22 +1,45 @@
+import { isDockerRunning } from "../utils/docker.js"
 import { defaultRespondFunction, Response, ResponseItem } from "../utils/response.js"
 import { getPluginKeyword } from "../utils/settings.js"
 import {containerCommands} from './containers/container-commads.js'
 import { imageCommands } from "./images/image-commands.js"
+import { launchDockerDesktop } from "./launch-docker/index.js"
+
+const LAUNCHDOCKERDESKTOP = 'launch-docker-desktop'
 
 /**
  * @type {Command}
  */
-export default function dockerCommand(parameters, respond = defaultRespondFunction) {
+export default async function dockerCommand(method, parameters, respond = defaultRespondFunction) {
 	const pluginKeyword = getPluginKeyword()
+
+	if (method === LAUNCHDOCKERDESKTOP) {
+		return await launchDockerDesktop()
+	}
+
+	// in case docker is not running
+	const running = await isDockerRunning()
+
+	if (!running) {
+		return respond(new Response([
+			new ResponseItem(
+				'docker seems to be paused, starting or not running at all',
+				'click to try starting docker. If paused unpause from Docker Desktop',
+				{
+					method: LAUNCHDOCKERDESKTOP
+				}
+			)
+		]))
+	}
 
 	const topLevelCommands = [
 		{
 			command: 'containers',
-			description: 'List all containers'
+			description: 'List all containers',
 		},
 		{
 			command: 'images',
-			description: 'List all images'
+			description: 'List all images',
 		},
 	]
 
@@ -29,12 +52,10 @@ export default function dockerCommand(parameters, respond = defaultRespondFuncti
 					method: 'Flow.Launcher.ChangeQuery',
 					parameters: [`${pluginKeyword} ${command}`, false],
 					dontHideAfterAction: true
-				},
-				'assets/docker.png'
+				}
 			)
 		)))
 	}
-
 
 	if (parameters[0] === 'containers') {
 		return containerCommands(parameters, respond)
@@ -44,6 +65,6 @@ export default function dockerCommand(parameters, respond = defaultRespondFuncti
 		return imageCommands(parameters, respond)
 	}
 
-	// Try filtering possible combinations
+	// TODO: Try filtering possible combinations
 	return respond(new Response())
 }

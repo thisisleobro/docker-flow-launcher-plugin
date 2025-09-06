@@ -13,7 +13,7 @@ export class ResponseItem {
 		this.title = title
 		this.subtitle = subtitle
 		this.JsonRPCAction = JsonRPCAction
-		this.IcoPath = IcoPath
+		this.IcoPath = IcoPath || 'assets/docker.png'
 	}
 }
 
@@ -22,13 +22,13 @@ export class Response {
 	/**
 	 * @param {ResponseItem | ResponseItem[] | string} result
 	 */
-	constructor(result) {
+	constructor(result, subtitle) {
 		if (Array.isArray(result)) {
 			this.result = result
 		} else if (result instanceof ResponseItem) {
 			this.result = [result]
 		} else if (typeof result === 'string') {
-			this.result = [new ResponseItem(result)]
+			this.result = [new ResponseItem(result, subtitle)]
 		} else {
 			this.result = []
 		}

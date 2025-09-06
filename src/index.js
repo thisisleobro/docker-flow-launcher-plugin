@@ -17,7 +17,7 @@ import { defaultRespondFunction as respond, Response, ResponseItem } from './uti
 // respond(new Response(new ResponseItem('', process.argv[2])))
 
 
-dockerCommand(parameters)
+dockerCommand(method, parameters)
 
 
 // if (method === QUERY) {

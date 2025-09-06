@@ -1,17 +1,21 @@
+import { getNewDockerInstance } from "../../utils/docker.js";
 import { Response, ResponseItem } from "../../utils/response.js";
 import { Docker } from 'docker-cli-js';
 
 
 export function containerCommands(_parameters, respond) {
-	const docker = new Docker({echo: false});
+	const docker = getNewDockerInstance()
+
+	if (!docker) {
+		return respond(new Response('No docker instance running yet'))
+	}
+
 	docker.command('ps --all')
 		.then((result) => {
 			const {containerList} = result
 
 			if (!containerList || containerList.length === 0 ) {
-				return respond(new Response(
-					new ResponseItem('container list is empty', null, null, 'assets/docker.png')
-				))
+				return respond(new Response('container list is empty'))
 			}
 
 			return respond(new Response(containerList.map(({names, image, created, status, ports}) =>
