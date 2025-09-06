@@ -4,7 +4,7 @@
   "Name": "Docker",
   "Description": "Manage Docker. List containers, images...",
   "Author": "Leo Carvalho",
-  "Version": "0.0.1",
+  "Version": "0.0.2",
   "Language": "javascript",
   "Website": "https://github.com/thisisleobro/docker-flow-launcher-plugin",
   "UrlDownload": "https://github.com/thisisleobro/docker-flow-launcher-plugin/releases/latest",
