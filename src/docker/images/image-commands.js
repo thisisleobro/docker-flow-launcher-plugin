@@ -1,9 +1,8 @@
 import { getNewDockerInstance } from "../../utils/docker.js";
 import { Response, ResponseItem } from "../../utils/response.js";
-import { Docker } from 'docker-cli-js';
 
 
-export function imageCommands(_parameters, respond) {
+export function imageCommands(_parameters, settings, respond) {
 	const docker = getNewDockerInstance()
 
 	if (!docker) {

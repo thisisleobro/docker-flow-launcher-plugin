@@ -7,10 +7,8 @@ import { launchDockerDesktop } from "./launch-docker/index.js"
 
 const LAUNCHDOCKERDESKTOP = 'launch-docker-desktop'
 
-/**
- * @type {Command}
- */
-export default async function dockerCommand(method, parameters, respond = defaultRespondFunction) {
+
+export default async function dockerCommand(method, parameters, settings, respond = defaultRespondFunction) {
 	const pluginKeyword = getPluginKeyword()
 
 	if (method === LAUNCHDOCKERDESKTOP) {
@@ -58,11 +56,11 @@ export default async function dockerCommand(method, parameters, respond = defaul
 	}
 
 	if (parameters[0] === 'containers') {
-		return containerCommands(parameters, respond)
+		return containerCommands(parameters, settings, respond)
 	}
 
 	if (parameters[0] === 'images') {
-		return imageCommands(parameters, respond)
+		return imageCommands(parameters, settings, respond)
 	}
 
 	// TODO: Try filtering possible combinations

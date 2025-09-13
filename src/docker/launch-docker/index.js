@@ -1,8 +1,9 @@
 import { spawn } from 'child_process'
 import path from 'path'
-import os from 'os'
 
-
+/**
+ * TODO: user docker desktop start to stard engine
+ */
 export function launchDockerDesktop() {
 	return new Promise((resolve, reject) => {
 		const dockerPath = path.join(
@@ -26,13 +27,3 @@ export function launchDockerDesktop() {
 		}
 	});
 }
-
-// // Example usage
-// (async () => {
-// 	try {
-// 		await launchDockerDesktop();
-// 		console.log('🚀 Docker Desktop launch command sent.');
-// 	} catch (err) {
-// 		console.error('❌ Error launching Docker Desktop:', err.message);
-// 	}
-// })();

@@ -1,10 +1,15 @@
 import { getNewDockerInstance } from "../../utils/docker.js";
 import { Response, ResponseItem } from "../../utils/response.js";
-import { Docker } from 'docker-cli-js';
 
 
-export function containerCommands(_parameters, respond) {
+/**
+ * 
+ * @param {{containerOrderField: 'Name' | 'State' | 'Creation date'}} settings
+ */
+export function containerCommands(_parameters, settings, respond) {
 	const docker = getNewDockerInstance()
+
+	const sortField = settings.containerOrderField;
 
 	if (!docker) {
 		return respond(new Response('No docker instance running yet'))

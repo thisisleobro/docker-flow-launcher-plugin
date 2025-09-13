@@ -1,0 +1,9 @@
+body:
+  - type: dropdown
+    attributes:
+      name: containerOrderField
+      label: order containers by
+      defaultValue: name
+      options:
+        - name
+        - state

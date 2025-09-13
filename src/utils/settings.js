@@ -12,4 +12,4 @@ export const getPluginKeyword = () =>
 	getApplicationSettings()
 		.PluginSettings
 		.Plugins[getPluginSettings().ID]
-		.ActionKeywords[0] || getUserPluginKeyword().ActionKeyword
+		.ActionKeywords[0]
