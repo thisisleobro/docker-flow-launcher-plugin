@@ -1,5 +1,9 @@
-## Unofficial Docker Plugin for Flow Launcher
-
+<h1>
+  Unofficial Docker Plugin for Flow Launcher
+  <a href="https://ko-fi.com/thisisleobro" target="_blank">
+    <img src="https://img.shields.io/badge/Ko--fi-Support-%23FF5E5B?logo=ko-fi">
+  </a>
+</h1>
 You can list images and containers for now.
 Suggestions are welcome.
 
